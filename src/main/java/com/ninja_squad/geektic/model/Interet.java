@@ -1,6 +1,7 @@
 package com.ninja_squad.geektic.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Anthony on 29/06/15.
@@ -11,7 +12,11 @@ import javax.persistence.*;
 public class Interet {
     //Attributs
 
+    @ManyToMany(mappedBy = "interets")
+    private Set<Geek> geeks;
+
     @Id
+    @GeneratedValue
     private int id;
 
     private String libelle;

@@ -1,6 +1,7 @@
 package com.ninja_squad.geektic.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -14,9 +15,11 @@ public class Geek {
     @JoinTable(name = "GEEK_INTERET",
             joinColumns = @JoinColumn(name = "ID_GEEK"),
             inverseJoinColumns = @JoinColumn(name = "ID_INTERET"))
-    private Set<Interet> Interets;
+    private Set<Interet> interets;
+    //private Set<Interet> Interets = new HashSet<Interet>(); A VOIR ...
 
     @Id
+    @GeneratedValue
     private int id;
 
     private String nom;
