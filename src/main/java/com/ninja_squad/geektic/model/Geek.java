@@ -91,4 +91,8 @@ public class Geek {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Set<Interet> getInterets() { return interets; }
+
+    public void setInterets(Set<Interet> interets) { this.interets = interets; }
 }

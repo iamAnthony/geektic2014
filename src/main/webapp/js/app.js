@@ -5,6 +5,7 @@ app.config(['$routeProvider',
         $routeProvider.
             when('/', {
                 templateUrl: 'welcome.html',
+                controller: 'InterestsCtrl'
             }).
             when('/geek/:id', {
                 templateUrl: 'geek_details.html',
@@ -23,6 +24,22 @@ app.config(['$routeProvider',
             });
     }]);
 
+app.controller('InterestsCtrl', function($scope, $http) {
+    $http.get('/interets').success(function(showInterests) {
+        $scope.showInterests = showInterests;
+    });
+
+    $scope.search = function(){
+
+        $http.get('geek', {
+            params: $scope.criteria
+        }).success(function(lesGeeks) {
+            $scope.lesGeeks = lesGeeks;
+        });
+
+    }
+});
+
 app.controller('ResultsCtrl', function($scope, $http) {
     $http.get('/resultats').success(function(showResults) {
         $scope.showResults = showResults;
@@ -40,5 +57,5 @@ app.controller('GeekCtrl', function($scope, $http, $location, $routeParams) {
 app.controller('AllGeekCtrl', function($scope, $http) {
     $http.get('/geek').success(function(allGeeks) {
         $scope.allGeeks = allGeeks;
-    }).error(function (){alert("erreur");});
-})
+    });
+});

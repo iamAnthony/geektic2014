@@ -1,6 +1,7 @@
 package com.ninja_squad.geektic.dao;
 
 import com.ninja_squad.geektic.model.Geek;
+import com.ninja_squad.geektic.model.Interet;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +26,14 @@ public class GeekTicDao {
     public List<Geek> findAllGeeks(){
         String jpql = "SELECT g FROM Geek AS g";
         TypedQuery<Geek> query = em.createQuery(jpql, Geek.class);
+
+        return query.getResultList();
+    }
+
+    //Récuperer tous les centres d'intérêts
+    public List<Interet> getAllInterests(){
+        String jpql = "SELECT i FROM Interet AS i";
+        TypedQuery<Interet> query = em.createQuery(jpql, Interet.class);
 
         return query.getResultList();
     }

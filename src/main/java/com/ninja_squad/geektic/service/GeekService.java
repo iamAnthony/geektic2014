@@ -23,12 +23,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  */
 
 @RestController
+@Transactional
 @RequestMapping("/geek")
 public class GeekService {
-
     @Autowired
     private GeekTicDao dao;
-    private List<Geek> geeks = new ArrayList<>();
 
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
     public Geek geekDetails(@PathVariable("id") int id) {

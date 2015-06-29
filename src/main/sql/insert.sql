@@ -3,7 +3,8 @@ insert into interet(libelle) values ('C#');
 insert into interet(libelle) values ('JAVA');
 insert into interet(libelle) values ('Angular');
 insert into interet(libelle) values ('TDD');
-insert into interet(libelle) values ('MCD');
+insert into interet(libelle) values ('UML');
+insert into interet(libelle) values ('SQL');
 
 INSERT INTO geek (nom,prenom,mail,sexe,description) VALUES ('Tatiana','Duval','eros.non@etcommodo.ca','H','Entrer ici une description de ce profil !');
 INSERT INTO geek (nom,prenom,mail,sexe,description) VALUES ('Julia','Cordier','Nam.ligula.elit@Duisdignissim.edu','F','Entrer ici une description de ce profil !');
