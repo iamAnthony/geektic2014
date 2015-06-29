@@ -25,8 +25,10 @@ app.controller('ResultsCtrl', function($scope, $http) {
     });
 });
 
-app.controller('GeekCtrl', function($scope, $http, $routeParams) {
+app.controller('GeekCtrl', function($scope, $http, $location, $routeParams) {
     $http.get('/geek/' + $routeParams.id).success(function (showGeek) {
         $scope.showGeek = showGeek;
+    }).error(function (){
+        $location.url('/');
     });
 });

@@ -1,5 +1,6 @@
 package com.ninja_squad.geektic.service;
 
+import com.ninja_squad.geektic.MyException;
 import com.ninja_squad.geektic.dao.GeekTicDao;
 import com.ninja_squad.geektic.model.Geek;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ public class GeekService {
 
     @RequestMapping(method = GET, value="/{id}")
     public Geek geekDetails(@PathVariable("id") int id) {
-        return dao.findById(id);
+        Geek g = dao.findById(id);
+        if (g == null)
+            throw new MyException("Geek non trouvé");
+        else
+            return g;
     }
 }
