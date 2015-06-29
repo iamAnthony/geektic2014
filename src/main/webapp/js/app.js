@@ -10,6 +10,10 @@ app.config(['$routeProvider',
                 templateUrl: 'geek_details.html',
                 controller: 'GeekCtrl'
             }).
+            when('/geek', {
+                templateUrl: 'all_geeks.html',
+                controller: 'AllGeekCtrl'
+            }).
             when('/resultats', {
                 templateUrl: 'results.html',
                 controller: 'ResultsCtrl'
@@ -29,6 +33,12 @@ app.controller('GeekCtrl', function($scope, $http, $location, $routeParams) {
     $http.get('/geek/' + $routeParams.id).success(function (showGeek) {
         $scope.showGeek = showGeek;
     }).error(function (){
-        $location.url('/');
+        $location.url('/geek');
     });
 });
+
+app.controller('AllGeekCtrl', function($scope, $http) {
+    $http.get('/geek').success(function(allGeeks) {
+        $scope.allGeeks = allGeeks;
+    }).error(function (){alert("erreur");});
+})

@@ -36,4 +36,13 @@ public class GeekTicDaoTest extends BaseDaoTest {
         int response = dao.findById(expected).getId();
         assertEquals(expected, response);
     }
+
+    @Test public void testFindAllGeeks() {
+        int expected = 2;
+        int response = dao.findAllGeeks().size();
+        assertEquals(expected, response);
+        String expectedLastEmail = "dupond.bernadette@tintin.fr";
+        String responseLastEmail = dao.findAllGeeks().get(1).getMail();
+        assertEquals(expectedLastEmail, responseLastEmail);
+    }
 }
