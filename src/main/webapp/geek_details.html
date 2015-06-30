@@ -3,5 +3,8 @@
     <li class="list-group-item"><strong>Prénom : </strong>{{showGeek.prenom}}</li>
     <li class="list-group-item"><strong>Email : </strong>{{showGeek.mail}}</li>
     <li class="list-group-item"><strong>Sexe : </strong>{{showGeek.sexe}}</li>
+    <li class="list-group-item"><strong>Centre d'intérêts : </strong><span style="margin:0px 5px 0px 5px; font-size: 13px" class="label label-primary" ng-repeat="interet in showGeek.interets">{{interet.libelle}}</span></li>
     <li class="list-group-item"><strong>Description : </strong>{{showGeek.description}}</li>
 </ul>
+
+<a href="#" class="btn btn-warning btn-lg btn-block">Non merci, rechercher encore ! <span class="glyphicon glyphicon-chevron-right"></span></span></a>

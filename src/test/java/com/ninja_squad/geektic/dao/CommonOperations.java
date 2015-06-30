@@ -21,6 +21,7 @@ public class CommonOperations {
                             .columns("ID", "nom", "prenom", "mail", "sexe", "description")
                             .values(1, "aubree", "anthony", "lp@anthonyaubree.com", "H", "description")
                             .values(2, "dupond", "bernadette", "dupond.bernadette@tintin.fr", "F", "description")
+                            .values(3, "bonjour", "bonsoir", "bon.bon@aurevoir.fr", "H", "description !")
                             .build(),
                     insertInto("INTERET")
                             .columns("ID", "libelle")
@@ -34,6 +35,8 @@ public class CommonOperations {
                             .values(1, 2)
                             .values(2, 3)
                             .values(2, 1)
+                            .values(3, 1)
+                            .values(3, 2)
                             .build()
             );
 }

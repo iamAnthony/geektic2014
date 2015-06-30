@@ -3,9 +3,15 @@ package com.ninja_squad.geektic.dao;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.Operations;
 import com.ninja_squad.dbsetup.operation.Operation;
+import com.ninja_squad.geektic.model.Geek;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 
@@ -39,7 +45,7 @@ public class GeekTicDaoTest extends BaseDaoTest {
 
     @Test
     public void testFindAllGeeks() {
-        int expected = 2;
+        int expected = 3;
         int response = dao.findAllGeeks().size();
         assertEquals(expected, response);
         String expectedLastEmail = "dupond.bernadette@tintin.fr";
@@ -55,5 +61,26 @@ public class GeekTicDaoTest extends BaseDaoTest {
         String expectedLastInterest = "Angular";
         String responseLastInterest = dao.getAllInterests().get(2).getLibelle();
         assertEquals(expectedLastInterest, responseLastInterest);
+    }
+
+    @Test
+    public void testFindBySex() {
+        List<Integer> expected = Arrays.asList(2);
+
+        List<Integer> response = dao.findByCriteria("F").stream().map(Geek::getId).collect(Collectors.toList());
+        Collections.sort(response);
+
+        assertEquals(expected, response);
+    }
+
+    @Test
+    public void testFindBySexAndInterests() {
+        List<Integer> expected = Arrays.asList(1, 3);
+        List<Integer> given = Arrays.asList(1, 2);
+
+        List<Integer> response = dao.findByCriteria("H", given).stream().map(Geek::getId).collect(Collectors.toList());
+        Collections.sort(response);
+
+        assertEquals(expected, response);
     }
 }

@@ -1,15 +1,21 @@
-<table class="table table-striped">
-    <th>Nom</th>
-    <th>Prénom</th>
-    <th>Email</th>
-    <th>Sexe</th>
-    <th>Description</th>
+<table ng-show="allGeeks.length > 0" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
 
-    <tr ng-repeat="geek in allGeeks">
-        <td>{{geek.nom}} </td>
-        <td>{{geek.prenom}} </td>
-        <td>{{geek.mail}} </td>
-        <td>{{geek.sexe}} </td>
-        <td>{{geek.description}} </td>
-    </tr>
+    <tbody>
+        <tr ng-repeat="geek in allGeeks">
+            <td>{{geek.nom}} </td>
+            <td>{{geek.prenom}} </td>
+            <td>{{geek.description}} </td>
+            <td><a href="#/geek/{{geek.id}}" class="btn btn-info btn-block">Consulter son profil <span class="glyphicon glyphicon-heart-empty"></span></a></td>
+        </tr>
+    </tbody>
 </table>
+
+<div ng-hide="allGeeks.length > 0" class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-exclamation-sign"></span> Aucun geek n'est présent en base :(</div>

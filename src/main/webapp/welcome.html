@@ -22,20 +22,22 @@
     </div>
 </form>
 
-<table class="table table-striped">
+<table ng-show="showResults.length > 0" class="table table-striped">
     <thead>
-    <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Description</th>
-    </tr>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
     </thead>
 
     <tbody>
-    <tr ng-repeat="geek in showResults">
-        <td>{{geek.nom}} </td>
-        <td>{{geek.prenom}} </td>
-        <td>{{geek.description}} </td>
-    </tr>
+        <tr ng-repeat="geek in showResults">
+            <td>{{geek.nom}} </td>
+            <td>{{geek.prenom}} </td>
+            <td>{{geek.description}} </td>
+            <td><a href="#/geek/{{geek.id}}" class="btn btn-info btn-block">Consulter son profil <span class="glyphicon glyphicon-heart-empty"></span></a></td>
+        </tr>
     </tbody>
 </table>

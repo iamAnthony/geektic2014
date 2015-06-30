@@ -15,10 +15,6 @@ app.config(['$routeProvider',
                 templateUrl: 'all_geeks.html',
                 controller: 'AllGeekCtrl'
             }).
-            when('/resultats', {
-                templateUrl: 'results.html',
-                controller: 'ResultsCtrl'
-            }).
             otherwise({
                 redirectTo: '/'
             });
@@ -27,6 +23,7 @@ app.config(['$routeProvider',
 app.controller('InterestsCtrl', function($scope, $http) {
     $scope.myForm = {};
     $scope.myForm.sexe = "H";
+    $scope.montrerTableau = false;
 
     $http.get('/interets').success(function (showInterests) {
         $scope.showInterests = showInterests;
@@ -39,15 +36,8 @@ app.controller('InterestsCtrl', function($scope, $http) {
             params: {sexe: $scope.myForm.sexe, interets: $scope.myForm.interets}
         }).success(function(showResults) {
             $scope.showResults = showResults;
-            console.log(showResults);
         })
     };
-});
-
-app.controller('ResultsCtrl', function($scope, $http) {
-    $http.get('/resultats').success(function(showResults) {
-        $scope.showResults = showResults;
-    });
 });
 
 app.controller('GeekCtrl', function($scope, $http, $location, $routeParams) {
