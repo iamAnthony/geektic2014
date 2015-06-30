@@ -42,9 +42,15 @@ public class GeekService {
         return dao.findAllGeeks();
     }
 
+    //On appelle le DAO pour la recherche par sexe (si seul le sexe est indiqué dans le formulaire de recherche)
+    @RequestMapping(method = RequestMethod.GET, params = {"sexe","interets"})
+    public List<Geek> geekCriteria(@RequestParam("sexe") String sexe, @RequestParam("interets") List<Integer> interets) {
+        return dao.findByCriteria(sexe, interets);
+    }
+
     //On appelle le DAO pour la recherche par sexe et interets grace aux parametres de l'appel
     @RequestMapping(method = RequestMethod.GET, params = {"sexe"})
-    public List<Geek> geekCriteria(@RequestParam("sexe") String sexe) {
+    public List<Geek> geekSexe(@RequestParam("sexe") String sexe) {
         return dao.findByCriteria(sexe);
     }
 }

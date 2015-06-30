@@ -6,6 +6,7 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -27,7 +28,6 @@ public class GeekTicDao {
     public List<Geek> findAllGeeks(){
         String jpql = "SELECT g FROM Geek AS g";
         TypedQuery<Geek> query = em.createQuery(jpql, Geek.class);
-        System.out.println("findallgeeks");
 
         return query.getResultList();
     }
@@ -40,24 +40,23 @@ public class GeekTicDao {
         return query.getResultList();
     }
 
-    //Recherche de geek d'après des critères
+    //Recherche de geek d'après des critères de sexe et d'interets
+    public List<Geek> findByCriteria(String sexe, List<Integer> interets){
+        String jpql = "SELECT distinct g FROM Geek g JOIN g.interets i WHERE g.sexe = :sexe AND i.id IN (:interets)";
+
+        Query query = em.createQuery(jpql);
+        query.setParameter("sexe", sexe).setParameter("interets", interets);
+
+        return query.getResultList();
+    }
+
+    //Recherche de geek par leur sexe
     public List<Geek> findByCriteria(String sexe){
-        String jpql = "SELECT g FROM Geek AS g WHERE g.sexe = :sexe";
-        /*if (interets.size() == 1)
-            jpql += " AND i.id = :interet";
-        else if (interets.size() > 1) {
-            jpql += " AND (";
-            for(int i = 0; i != i-2; i++){
-                jpql += " i.id = :interet OR";
-            }
-            jpql.substring(0, jpql.length()-2);
-            jpql += ")";
-        }*/
+        String jpql = "SELECT distinct g FROM Geek g WHERE g.sexe = :sexe";
 
-        TypedQuery<Geek> query = em.createQuery(jpql, Geek.class);
-        query.setParameter("sexe", sexe);//.setParameter("interet", interets);
+        Query query = em.createQuery(jpql);
+        query.setParameter("sexe", sexe);
 
-        List<Geek> result = query.getResultList();
-        return result;
+        return query.getResultList();
     }
 }
