@@ -25,19 +25,23 @@ app.config(['$routeProvider',
     }]);
 
 app.controller('InterestsCtrl', function($scope, $http) {
-    $http.get('/interets').success(function(showInterests) {
+    $scope.myForm = {};
+    $scope.myForm.sexe = "H";
+    $scope.myForm.interets = {'id': '1'};
+
+    $http.get('/interets').success(function (showInterests) {
         $scope.showInterests = showInterests;
     });
 
-    $scope.search = function(){
-
-        $http.get('geek', {
-            params: $scope.criteria
-        }).success(function(lesGeeks) {
-            $scope.lesGeeks = lesGeeks;
-        });
-
-    }
+    $scope.myForm.submitTheForm = function (item, event) {
+        console.log("--> Submitting form");
+        $http.get('/geek', {
+            params: {sexe: $scope.myForm.sexe}
+        }).success(function(showResults) {
+            $scope.showResults = showResults;
+            console.log(showResults);
+        })
+    };
 });
 
 app.controller('ResultsCtrl', function($scope, $http) {

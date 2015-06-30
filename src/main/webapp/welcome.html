@@ -1,39 +1,41 @@
-<form ng-submit="search()" class="form-horizontal">
+<form class="form-horizontal">
     <div class="form-group">
-        <div class="checkbox">
+        <div class="radio">
             <label>
-                <input type="checkbox" id="homme" ng-model="criteria.sexe" ng-true-value="H"> Homme
+                <input type="radio" name="sexe" ng-model="myForm.sexe" value="H"> Homme
             </label>
         </div>
-        <div class="checkbox">
+        <div class="radio">
             <label>
-                <input type="checkbox" id="femme" ng-model="criteria.sexe" ng-true-value="F"> Femme
+                <input type="radio" name="sexe" ng-model="myForm.sexe" value="F"> Femme
             </label>
         </div>
     </div>
 
     <div class="form-group">
-        <select multiple class="form-control">
-            <option ng-repeat="interet in showInterests" ng-model="criteria.interet" ng-true-value="{{interet.id}}">{{interet.libelle}}</option>
+        <select multiple ng-model="myForm.interets" class="form-control">
+            <option ng-repeat="interet in showInterests" ng-value="{{interet.id}}">{{interet.libelle}}</option>
         </select>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-search"></span> Rechercher</button>
+        <button ng-click="myForm.submitTheForm()" type="submit" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-search"></span> Rechercher</button>
     </div>
 </form>
 
 <table class="table table-striped">
-    <th>Nom</th>
-    <th>Prénom</th>
-    <th>Email</th>
-    <th>Sexe</th>
-    <th>Description</th>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Description</th>
+    </tr>
+    </thead>
 
+    <tbody>
     <tr ng-repeat="geek in showResults">
         <td>{{geek.nom}} </td>
         <td>{{geek.prenom}} </td>
-        <td>{{geek.mail}} </td>
-        <td>{{geek.sexe}} </td>
         <td>{{geek.description}} </td>
     </tr>
+    </tbody>
 </table>

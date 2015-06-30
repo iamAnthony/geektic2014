@@ -2,6 +2,7 @@ package com.ninja_squad.geektic.dao;
 
 import com.ninja_squad.geektic.model.Geek;
 import com.ninja_squad.geektic.model.Interet;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +27,7 @@ public class GeekTicDao {
     public List<Geek> findAllGeeks(){
         String jpql = "SELECT g FROM Geek AS g";
         TypedQuery<Geek> query = em.createQuery(jpql, Geek.class);
+        System.out.println("findallgeeks");
 
         return query.getResultList();
     }
@@ -36,5 +38,26 @@ public class GeekTicDao {
         TypedQuery<Interet> query = em.createQuery(jpql, Interet.class);
 
         return query.getResultList();
+    }
+
+    //Recherche de geek d'après des critères
+    public List<Geek> findByCriteria(String sexe){
+        String jpql = "SELECT g FROM Geek AS g WHERE g.sexe = :sexe";
+        /*if (interets.size() == 1)
+            jpql += " AND i.id = :interet";
+        else if (interets.size() > 1) {
+            jpql += " AND (";
+            for(int i = 0; i != i-2; i++){
+                jpql += " i.id = :interet OR";
+            }
+            jpql.substring(0, jpql.length()-2);
+            jpql += ")";
+        }*/
+
+        TypedQuery<Geek> query = em.createQuery(jpql, Geek.class);
+        query.setParameter("sexe", sexe);//.setParameter("interet", interets);
+
+        List<Geek> result = query.getResultList();
+        return result;
     }
 }
