@@ -4,7 +4,8 @@ nom VARCHAR (35),
 prenom VARCHAR (35),
 mail VARCHAR(50),
 sexe VARCHAR (1),
-description VARCHAR (400)
+description VARCHAR (400),
+vues integer DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE interet (

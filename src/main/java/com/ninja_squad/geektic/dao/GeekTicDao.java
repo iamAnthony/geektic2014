@@ -59,4 +59,12 @@ public class GeekTicDao {
 
         return query.getResultList();
     }
+
+    //Incrémentation du compteur du nombre de vues pour le geek consulté
+    public void addVue(int id_geek) {
+        Geek g = findById(id_geek);
+        g.setVues(g.getVues()+1);
+
+        em.persist(g);
+    }
 }

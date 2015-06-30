@@ -16,7 +16,6 @@ public class Geek {
             joinColumns = @JoinColumn(name = "ID_GEEK"),
             inverseJoinColumns = @JoinColumn(name = "ID_INTERET"))
     private Set<Interet> interets;
-    //private Set<Interet> Interets = new HashSet<Interet>(); A VOIR ...
 
     @Id
     @GeneratedValue
@@ -27,16 +26,18 @@ public class Geek {
     private String mail;
     private String sexe;
     private String description;
+    private Integer vues;
 
     //Constructeur
 
-    public Geek(int id, String nom, String prenom, String mail, String sexe, String description) {
+    public Geek(int id, String nom, String prenom, String mail, String sexe, String description, Integer vues) {
         this.setId(id);
         this.setNom(nom);
         this.setPrenom(prenom);
         this.setMail(mail);
         this.setSexe(sexe);
         this.setDescription(description);
+        this.setVues(vues);
     }
 
     public Geek() {
@@ -95,4 +96,12 @@ public class Geek {
     public Set<Interet> getInterets() { return interets; }
 
     public void setInterets(Set<Interet> interets) { this.interets = interets; }
+
+    public Integer getVues() {
+        return vues;
+    }
+
+    public void setVues(Integer vues) {
+        this.vues = vues;
+    }
 }

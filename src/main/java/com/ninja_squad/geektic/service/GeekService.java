@@ -26,13 +26,14 @@ public class GeekService {
     @Autowired
     private GeekTicDao dao;
 
-    //On appelle le DAO pour rechercher un Geek par son ID
+    //On appelle le DAO pour rechercher un Geek par son ID, et on incrémente la vue si le profil est trouvé.
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
     public Geek geekDetails(@PathVariable("id") int id) {
         Geek g = dao.findById(id);
         if (g == null)
             throw new MyException("Geek non trouvé");
         else
+            dao.addVue(id);
             return g;
     }
 
